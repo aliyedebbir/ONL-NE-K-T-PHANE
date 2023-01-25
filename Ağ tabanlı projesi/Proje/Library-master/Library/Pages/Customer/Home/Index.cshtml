@@ -1,0 +1,42 @@
+﻿@page
+@model Library.Pages.Customer.Home.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>@SharedLocalizer["Book"]</h1>
+
+<hr />
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model.Book)
+        {
+            <div class="col-md-3 col-sm-6">
+                <div class="product-grid6">
+                    <div class="product-image6">
+                        <a asp-page="./Details" asp-route-id="@item.BookId">
+                            <img class="pic-1" height="100" width="100" src="@item.ImageThumbnailUrl">
+                        </a>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="title"><a href="#">@item.Title</a></h3>
+                        <div class="price">
+                            @item.Price.ToString("c")
+                        </div>
+                        <h2 class="title"><a href="#">@item.Author.FirstName @item.Author.LastName</a></h2>
+                    </div>
+                    <ul class="social">
+                        @*<li><a data-tip="Düzenle" asp-page="./Edit" asp-route-id="@item.BookId"><i class="fa fa-edit"></i></a></li>*@
+                        <li><a data-tip="Görüntüle" asp-page="./Details" asp-route-id="@item.BookId"><i class="fa fa-eye"></i></a></li>
+                        @*<li><a data-tip="Sil" asp-page="./Delete" asp-route-id="@item.BookId"><i class="fa fa-trash-o"></i></a></li>*@
+                    </ul>
+                </div>
+            </div>
+            <hr>
+        }
+    </div>
+</div>
+<hr />
